@@ -48,7 +48,7 @@ type ChargeState struct {
 	ChargerPilotCurrent         int         `json:"charger_pilot_current"`
 	ChargerPower                int         `json:"charger_power"`
 	ChargerVoltage              int         `json:"charger_voltage"`
-	ChargingState               string      `json:"charging_state"`
+	ChargingState               string      `json:"charging_state"` // Starting, Charging, Complete, Stopped
 	ConnChargeCable             string      `json:"conn_charge_cable"`
 	EstBatteryRange             float64     `json:"est_battery_range"`
 	FastChargerBrand            string      `json:"fast_charger_brand"`
@@ -149,57 +149,63 @@ type VehicleConfig struct {
 	WheelType                   string `json:"wheel_type"`
 }
 
+type MediaState struct {
+	RemoteControlEnabled bool `json:"remote_control_enabled"`
+}
+
+type SoftwareUpdate struct {
+	DownloadPerc        int    `json:"download_perc"`
+	ExpectedDurationSec int    `json:"expected_duration_sec"`
+	InstallPerc         int    `json:"install_perc"`
+	Status              string `json:"status"`
+	Version             string `json:"version"`
+}
+
+type SpeedLimitMode struct {
+	Active          bool    `json:"active"`
+	CurrentLimitMph float64 `json:"current_limit_mph"`
+	MaxLimitMph     int     `json:"max_limit_mph"`
+	MinLimitMph     int     `json:"min_limit_mph"`
+	PinCodeSet      bool    `json:"pin_code_set"`
+}
+
 type VehicleState struct {
-	APIVersion          int    `json:"api_version"`
-	AutoparkStateV2     string `json:"autopark_state_v2"`
-	AutoparkStyle       string `json:"autopark_style"`
-	CalendarSupported   bool   `json:"calendar_supported"`
-	CarVersion          string `json:"car_version"`
-	CenterDisplayState  int    `json:"center_display_state"`
-	Df                  int    `json:"df"`
-	Dr                  int    `json:"dr"`
-	Ft                  int    `json:"ft"`
-	HomelinkDeviceCount int    `json:"homelink_device_count"`
-	HomelinkNearby      bool   `json:"homelink_nearby"`
-	IsUserPresent       bool   `json:"is_user_present"`
-	LastAutoparkError   string `json:"last_autopark_error"`
-	Locked              bool   `json:"locked"`
-	MediaState          struct {
-		RemoteControlEnabled bool `json:"remote_control_enabled"`
-	} `json:"media_state"`
-	NotificationsSupported  bool    `json:"notifications_supported"`
-	Odometer                float64 `json:"odometer"`
-	ParsedCalendarSupported bool    `json:"parsed_calendar_supported"`
-	Pf                      int     `json:"pf"`
-	Pr                      int     `json:"pr"`
-	RemoteStart             bool    `json:"remote_start"`
-	RemoteStartEnabled      bool    `json:"remote_start_enabled"`
-	RemoteStartSupported    bool    `json:"remote_start_supported"`
-	Rt                      int     `json:"rt"`
-	SentryMode              bool    `json:"sentry_mode"`
-	SentryModeAvailable     bool    `json:"sentry_mode_available"`
-	SmartSummonAvailable    bool    `json:"smart_summon_available"`
-	SoftwareUpdate          struct {
-		DownloadPerc        int    `json:"download_perc"`
-		ExpectedDurationSec int    `json:"expected_duration_sec"`
-		InstallPerc         int    `json:"install_perc"`
-		Status              string `json:"status"`
-		Version             string `json:"version"`
-	} `json:"software_update"`
-	SpeedLimitMode struct {
-		Active          bool    `json:"active"`
-		CurrentLimitMph float64 `json:"current_limit_mph"`
-		MaxLimitMph     int     `json:"max_limit_mph"`
-		MinLimitMph     int     `json:"min_limit_mph"`
-		PinCodeSet      bool    `json:"pin_code_set"`
-	} `json:"speed_limit_mode"`
-	SummonStandbyModeEnabled bool   `json:"summon_standby_mode_enabled"`
-	SunRoofPercentOpen       int    `json:"sun_roof_percent_open"`
-	SunRoofState             string `json:"sun_roof_state"`
-	Timestamp                int64  `json:"timestamp"`
-	ValetMode                bool   `json:"valet_mode"`
-	ValetPinNeeded           bool   `json:"valet_pin_needed"`
-	VehicleName              string `json:"vehicle_name"`
+	APIVersion               int            `json:"api_version"`
+	AutoparkStateV2          string         `json:"autopark_state_v2"`
+	AutoparkStyle            string         `json:"autopark_style"`
+	CalendarSupported        bool           `json:"calendar_supported"`
+	CarVersion               string         `json:"car_version"`
+	CenterDisplayState       int            `json:"center_display_state"`
+	Df                       int            `json:"df"`
+	Dr                       int            `json:"dr"`
+	Ft                       int            `json:"ft"`
+	HomelinkDeviceCount      int            `json:"homelink_device_count"`
+	HomelinkNearby           bool           `json:"homelink_nearby"`
+	IsUserPresent            bool           `json:"is_user_present"`
+	LastAutoparkError        string         `json:"last_autopark_error"`
+	Locked                   bool           `json:"locked"`
+	MediaState               MediaState     `json:"media_state"`
+	NotificationsSupported   bool           `json:"notifications_supported"`
+	Odometer                 float64        `json:"odometer"`
+	ParsedCalendarSupported  bool           `json:"parsed_calendar_supported"`
+	Pf                       int            `json:"pf"`
+	Pr                       int            `json:"pr"`
+	RemoteStart              bool           `json:"remote_start"`
+	RemoteStartEnabled       bool           `json:"remote_start_enabled"`
+	RemoteStartSupported     bool           `json:"remote_start_supported"`
+	Rt                       int            `json:"rt"`
+	SentryMode               bool           `json:"sentry_mode"`
+	SentryModeAvailable      bool           `json:"sentry_mode_available"`
+	SmartSummonAvailable     bool           `json:"smart_summon_available"`
+	SoftwareUpdate           SoftwareUpdate `json:"software_update"`
+	SpeedLimitMode           SpeedLimitMode `json:"speed_limit_mode"`
+	SummonStandbyModeEnabled bool           `json:"summon_standby_mode_enabled"`
+	SunRoofPercentOpen       int            `json:"sun_roof_percent_open"`
+	SunRoofState             string         `json:"sun_roof_state"`
+	Timestamp                int64          `json:"timestamp"`
+	ValetMode                bool           `json:"valet_mode"`
+	ValetPinNeeded           bool           `json:"valet_pin_needed"`
+	VehicleName              string         `json:"vehicle_name"`
 }
 
 type VehicleData struct {
